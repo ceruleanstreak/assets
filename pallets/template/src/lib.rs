@@ -83,10 +83,34 @@ pub mod pallet {
 	// Errors inform users that something went wrong.
 	#[pallet::error]
 	pub enum Error<T> {
-		/// Error names should be descriptive.
-		NoneValue,
-		/// Errors should have helpful documentation associated with them.
-		StorageOverflow,
+        /// An account reached maximum of assets owned
+        TooManyOwned,
+        /// Trying to transfer or buy an asset from oneself.
+        TransferToSelf,
+        /// This kitty already exists!
+        DuplicateKitty,
+        /// This asset already exists!
+        DuplicateAsset,
+        /// This kitty does not exist!
+        NoKitty,
+        /// This asset does not exist!
+        NoAsset,
+        /// You are not the owner of this asset.
+        NotOwner,
+        /// This asset is not for sale.
+        NotForSale,
+        /// Ensures that the buying price is greater than the asking price.
+        BidPriceTooLow,
+        /// You need to have two cats with different gender to breed.
+        CantBreed,
+        /// This person doesn't have enough resources to buy this land asset
+        NotEnoughMoney,
+        /// The owner of this asset doesn't intend to sell it
+        AssetIsntForSale,
+        /// While you waited, the asset was gone
+        AssetAlreadySold,
+        /// While you waited, the price has changed
+        PriceChanged,
 	}
 
 	// Dispatchable functions allows users to interact with the pallet and invoke state changes.
@@ -112,23 +136,6 @@ pub mod pallet {
 			Ok(())
 		}
 
-		/// An example dispatchable that may throw a custom error.
-		#[pallet::weight(10_000 + T::DbWeight::get().reads_writes(1,1))]
-		pub fn cause_error(origin: OriginFor<T>) -> DispatchResult {
-			let _who = ensure_signed(origin)?;
 
-			// Read a value from storage.
-			match <Something<T>>::get() {
-				// Return an error if the value has not been set.
-				None => Err(Error::<T>::NoneValue)?,
-				Some(old) => {
-					// Increment the value read from storage; will error in the event of overflow.
-					let new = old.checked_add(1).ok_or(Error::<T>::StorageOverflow)?;
-					// Update the value in storage with the incremented result.
-					<Something<T>>::put(new);
-					Ok(())
-				},
-			}
-		}
 	}
 }
