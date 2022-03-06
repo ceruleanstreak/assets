@@ -40,8 +40,13 @@ pub mod pallet {
         pub owner: T::AccountId,
     }
 
+
+	///If you want to keep your storage unbounded, you can include
+	/// #[pallet::without_storage_info]
+	/// As shown here https://substrate.stackexchange.com/questions/544/maxencodedlen-is-not-implemented-for-vecu8
 	#[pallet::pallet]
 	#[pallet::generate_store(pub(super) trait Store)]
+	#[pallet::without_storage_info]
 	pub struct Pallet<T>(_);
 
 
@@ -130,14 +135,22 @@ pub mod pallet {
 
 	/// Keeps track of the number of assets in existence.
     #[pallet::storage]
+	#[pallet::getter(fn get_count_of_assets)]
     pub(super) type CountForAssets<T: Config> = StorageValue<_, u64, ValueQuery>;
+
+
+
 
     /// Maps the asset struct to the asset id.
     #[pallet::storage]
+	#[pallet::getter(fn get_assets)]
     pub(super) type Assets<T: Config> = StorageMap<_, Twox64Concat, u32, Asset<T>>;
+
+
 
     /// Track the assets owned by each account.
     #[pallet::storage]
+	#[pallet::getter(fn get_count_of_assets_owned)]
     pub(super) type AssetsOwned<T: Config> =
         StorageMap<_, Twox64Concat, T::AccountId, BoundedVec<u32, T::MaxAssetsOwned>, ValueQuery>;
 
