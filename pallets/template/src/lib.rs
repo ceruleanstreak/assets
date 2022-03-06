@@ -40,7 +40,9 @@ pub mod pallet {
         pub owner: T::AccountId,
     }
 
-
+	#[pallet::pallet]
+	#[pallet::generate_store(pub(super) trait Store)]
+	pub struct Pallet<T>(_);
 
 
 	/// Configure the pallet by specifying the parameters and types on which it depends.
@@ -64,10 +66,66 @@ pub mod pallet {
 
 	}
 
+	// Errors inform users that something went wrong.
+	#[pallet::error]
+	pub enum Error<T> {
+        /// An account reached maximum of assets owned
+        TooManyOwned,
+        /// Trying to transfer or buy an asset from oneself.
+        TransferToSelf,
+        /// This kitty already exists!
+        DuplicateKitty,
+        /// This asset already exists!
+        DuplicateAsset,
+        /// This kitty does not exist!
+        NoKitty,
+        /// This asset does not exist!
+        NoAsset,
+        /// You are not the owner of this asset.
+        NotOwner,
+        /// This asset is not for sale.
+        NotForSale,
+        /// Ensures that the buying price is greater than the asking price.
+        BidPriceTooLow,
+        /// You need to have two cats with different gender to breed.
+        CantBreed,
+        /// This person doesn't have enough resources to buy this land asset
+        NotEnoughMoney,
+        /// The owner of this asset doesn't intend to sell it
+        AssetIsntForSale,
+        /// While you waited, the asset was gone
+        AssetAlreadySold,
+        /// While you waited, the price has changed
+        PriceChanged,
+	}
 
-	#[pallet::pallet]
-	#[pallet::generate_store(pub(super) trait Store)]
-	pub struct Pallet<T>(_);
+
+	#[pallet::event]
+	#[pallet::generate_deposit(pub(super) fn deposit_event)]
+	pub enum Event<T: Config> {
+        /// A new asset was successfully created.
+        AssetCreated { asset_id: u32, owner: T::AccountId },
+        /// The price of an asset was successfully set.
+        AssetPriceSet {
+            asset_id: u32,
+            price: Option<BalanceOf<T>>,
+        },
+        /// An asset was successfully transferred.
+        AssetTransferred {
+            from: T::AccountId,
+            to: T::AccountId,
+            asset_id: u32,
+        },
+        /// An asset was successfully sold.
+        AssetSold {
+            seller: T::AccountId,
+            buyer: T::AccountId,
+            asset_id: u32,
+            price: BalanceOf<T>,
+        },
+
+	}
+
 
 
 	/// Keeps track of the number of assets in existence.
@@ -113,66 +171,9 @@ pub mod pallet {
 
 
 
-	// Pallets use events to inform users when important changes are made.
-	// https://docs.substrate.io/v3/runtime/events-and-errors
-	#[pallet::event]
-	#[pallet::generate_deposit(pub(super) fn deposit_event)]
-	pub enum Event<T: Config> {
-        /// A new asset was successfully created.
-        AssetCreated { asset_id: u32, owner: T::AccountId },
-        /// The price of an asset was successfully set.
-        AssetPriceSet {
-            asset_id: u32,
-            price: Option<BalanceOf<T>>,
-        },
-        /// An asset was successfully transferred.
-        AssetTransferred {
-            from: T::AccountId,
-            to: T::AccountId,
-            asset_id: u32,
-        },
-        /// An asset was successfully sold.
-        AssetSold {
-            seller: T::AccountId,
-            buyer: T::AccountId,
-            asset_id: u32,
-            price: BalanceOf<T>,
-        },
 
-	}
 
-	// Errors inform users that something went wrong.
-	#[pallet::error]
-	pub enum Error<T> {
-        /// An account reached maximum of assets owned
-        TooManyOwned,
-        /// Trying to transfer or buy an asset from oneself.
-        TransferToSelf,
-        /// This kitty already exists!
-        DuplicateKitty,
-        /// This asset already exists!
-        DuplicateAsset,
-        /// This kitty does not exist!
-        NoKitty,
-        /// This asset does not exist!
-        NoAsset,
-        /// You are not the owner of this asset.
-        NotOwner,
-        /// This asset is not for sale.
-        NotForSale,
-        /// Ensures that the buying price is greater than the asking price.
-        BidPriceTooLow,
-        /// You need to have two cats with different gender to breed.
-        CantBreed,
-        /// This person doesn't have enough resources to buy this land asset
-        NotEnoughMoney,
-        /// The owner of this asset doesn't intend to sell it
-        AssetIsntForSale,
-        /// While you waited, the asset was gone
-        AssetAlreadySold,
-        /// While you waited, the price has changed
-        PriceChanged,
-	}
+
 
 
 	#[pallet::call]
