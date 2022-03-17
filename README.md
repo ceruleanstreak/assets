@@ -5,21 +5,25 @@
 Source: https://github.com/centrifuge/go-substrate-rpc-client/issues/133 
 
 
+--unsafe-rpc-external \
+
+--node-key 0000000000000000000000000000000000000000000000000000000000000001 \
+
+
 # Launching: 
 ## Launch first cloud node: 
 ./target/release/node-template \
---telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
---alice
---port 30333 \
---ws-port 9944 \
 --chain=customSpecRaw.json \
+--alice \
 --validator \
---ws-external \
---rpc-external \
 --rpc-cors=all \
 --rpc-methods=Unsafe \
+--unsafe-rpc-external \
+--unsafe-ws-external \
+--no-mdns \
+--telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
 --prometheus-external \
---name immers-node
+--name='Immers Cloud Node'
 
 It will tell you the public address which you'll paste in the bootnodes next
 
@@ -28,15 +32,15 @@ It will tell you the public address which you'll paste in the bootnodes next
 --chain=customSpecRaw.json \
 --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
 --bob \
---port 30333 \
---ws-port 9944 \
 --validator \
 --ws-external \
 --rpc-external \
 --rpc-cors=all \
 --rpc-methods=Unsafe \
+--unsafe-rpc-external \
+--unsafe-ws-external \
 --prometheus-external \
---name wsl-node \
+--name='WSL2 Node' \
 --bootnodes=/ip4/109.248.175.119/tcp/30333/p2p/12D3KooWLJkECPhH9vuvAPbSsoHXFLwL4YiA7Z2TXqFzRfKxTiF6
 
 
