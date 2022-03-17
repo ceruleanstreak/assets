@@ -23,7 +23,7 @@ Source: https://github.com/centrifuge/go-substrate-rpc-client/issues/133
 --no-mdns \
 --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
 --prometheus-external \
---name='Immers Cloud Node'
+--name='Digital Ocean Cloud Node'
 
 It will tell you the public address which you'll paste in the bootnodes next
 
@@ -42,6 +42,23 @@ It will tell you the public address which you'll paste in the bootnodes next
 --prometheus-external \
 --name='WSL2 Node' \
 --bootnodes=/ip4/109.248.175.119/tcp/30333/p2p/12D3KooWLJkECPhH9vuvAPbSsoHXFLwL4YiA7Z2TXqFzRfKxTiF6
+
+## Launch third node
+./target/release/node-template \
+--chain=customSpecRaw.json \
+--telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
+--charlie \
+--validator \
+--ws-external \
+--rpc-external \
+--rpc-cors=all \
+--rpc-methods=Unsafe \
+--unsafe-rpc-external \
+--unsafe-ws-external \
+--prometheus-external \
+--name='Immers Cloud Node' \
+--bootnodes=/ip4/137.184.162.190/tcp/30333/p2p/12D3KooWPZpcB1FaVHQJrhFjvNyx56hAsAfsT7u2NkpKXszJZiKa
+
 
 
 #### you may want to purge the chain
