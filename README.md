@@ -20,16 +20,17 @@ Source: https://github.com/centrifuge/go-substrate-rpc-client/issues/133
 --unsafe-rpc-external \
 --unsafe-ws-external \
 --no-mdns \
---telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
+--telemetry-url 'wss://telemetry.polkadot.io/submit/ 1' \
 --prometheus-external \
 --name='Digital Ocean Cloud Node'
+--node-key 0000000000000000000000000000000000000000000000000000000000000001 \
 
 It will tell you the public address which you'll paste in the bootnodes next
 
 ## Launch second node
 ./target/release/node-template \
 --chain=customSpecRaw.json \
---telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
+--telemetry-url 'wss://telemetry.polkadot.io/submit/ 1' \
 --bob \
 --validator \
 --ws-external \
@@ -41,7 +42,7 @@ It will tell you the public address which you'll paste in the bootnodes next
 --prometheus-external \
 --name='Digital Ocean Second Node' \
 --node-key 0000000000000000000000000000000000000000000000000000000000000002 \
---bootnodes=/ip4/137.184.162.190/tcp/30333/p2p/12D3KooWPZpcB1FaVHQJrhFjvNyx56hAsAfsT7u2NkpKXszJZiKa
+--bootnodes=/ip4/137.184.162.190/tcp/30333/p2p/12D3KooWKo5oBjBbaE6qtH2jmw5pyL1Z6k9sFyiHKwTB7SjrCs6c
 
 ## Launch third node
 ./target/release/node-template \
@@ -58,7 +59,7 @@ It will tell you the public address which you'll paste in the bootnodes next
 --prometheus-external \
 --name='Immers Cloud Node' \
 --node-key 0000000000000000000000000000000000000000000000000000000000000003 \
---bootnodes=/ip4/137.184.162.190/tcp/30333/p2p/12D3KooWPZpcB1FaVHQJrhFjvNyx56hAsAfsT7u2NkpKXszJZiKa
+--bootnodes=/ip4/137.184.162.190/tcp/30333/p2p/12D3KooWKo5oBjBbaE6qtH2jmw5pyL1Z6k9sFyiHKwTB7SjrCs6c
 
 
 
