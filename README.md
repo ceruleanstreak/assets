@@ -7,7 +7,6 @@ Source: https://github.com/centrifuge/go-substrate-rpc-client/issues/133
 
 --unsafe-rpc-external \
 
---node-key 0000000000000000000000000000000000000000000000000000000000000001 \
 
 
 # Launching: 
@@ -47,7 +46,7 @@ It will tell you the public address which you'll paste in the bootnodes next
 ## Launch third node
 ./target/release/node-template \
 --chain=customSpecRaw.json \
---telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
+--telemetry-url 'wss://telemetry.polkadot.io/submit/ 1' \
 --charlie \
 --validator \
 --ws-external \
@@ -58,6 +57,7 @@ It will tell you the public address which you'll paste in the bootnodes next
 --unsafe-ws-external \
 --prometheus-external \
 --name='Immers Cloud Node' \
+--node-key 0000000000000000000000000000000000000000000000000000000000000003 \
 --bootnodes=/ip4/137.184.162.190/tcp/30333/p2p/12D3KooWPZpcB1FaVHQJrhFjvNyx56hAsAfsT7u2NkpKXszJZiKa
 
 
