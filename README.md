@@ -40,8 +40,9 @@ It will tell you the public address which you'll paste in the bootnodes next
 --unsafe-rpc-external \
 --unsafe-ws-external \
 --prometheus-external \
---name='WSL2 Node' \
---bootnodes=/ip4/109.248.175.119/tcp/30333/p2p/12D3KooWLJkECPhH9vuvAPbSsoHXFLwL4YiA7Z2TXqFzRfKxTiF6
+--name='Digital Ocean Second Node' \
+--node-key 0000000000000000000000000000000000000000000000000000000000000002 \
+--bootnodes=/ip4/137.184.162.190/tcp/30333/p2p/12D3KooWPZpcB1FaVHQJrhFjvNyx56hAsAfsT7u2NkpKXszJZiKa
 
 ## Launch third node
 ./target/release/node-template \
