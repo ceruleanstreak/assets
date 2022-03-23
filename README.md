@@ -4,8 +4,13 @@
 
 Source: https://github.com/centrifuge/go-substrate-rpc-client/issues/133 
 
+# Prepare for launch
 
-#### You may want to purge the chain before starting the node
+### This is how you create customSpec.json and customSpecRaw.json (Linux only, local machine)
+./target/release/node-template build-spec --disable-default-bootnode --chain local > customSpec.json 
+./target/release/node-template build-spec --chain=customSpec.json --raw --disable-default-bootnode > customSpecRaw.json
+
+### You may want to purge the chain before starting the node
 ./target/release/node-template purge-chain --chain=customSpecRaw.json 
 
 # Launching: 
@@ -61,9 +66,6 @@ It will tell you the public address which you'll paste in the bootnodes next
 --bootnodes=/ip4/137.184.162.190/tcp/30333/p2p/12D3KooWKo5oBjBbaE6qtH2jmw5pyL1Z6k9sFyiHKwTB7SjrCs6c
 
 
-#### This is how you create customSpec.json and customSpecRaw.json (Linux only)
-./target/release/node-template build-spec --disable-default-bootnode --chain local > customSpec.json 
-./target/release/node-template build-spec --chain=customSpec.json --raw --disable-default-bootnode > customSpecRaw.json
 
 
 
