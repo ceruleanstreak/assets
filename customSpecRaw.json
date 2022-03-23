@@ -1,6 +1,6 @@
 {
-  "name": "Local Testnet",
-  "id": "local_testnet",
+  "name": "Planet Express",
+  "id": "planet_express",
   "chainType": "Local",
   "bootNodes": [],
   "telemetryEndpoints": null,
