@@ -5,9 +5,8 @@
 Source: https://github.com/centrifuge/go-substrate-rpc-client/issues/133 
 
 
---unsafe-rpc-external \
-
-
+#### You may want to purge the chain before starting the node
+./target/release/node-template purge-chain --chain=customSpecRaw.json 
 
 # Launching: 
 ## Launch first cloud node: 
@@ -61,10 +60,6 @@ It will tell you the public address which you'll paste in the bootnodes next
 --node-key 0000000000000000000000000000000000000000000000000000000000000003 \
 --bootnodes=/ip4/137.184.162.190/tcp/30333/p2p/12D3KooWKo5oBjBbaE6qtH2jmw5pyL1Z6k9sFyiHKwTB7SjrCs6c
 
-
-
-#### you may want to purge the chain
-./target/release/node-template purge-chain 
 
 #### This is how you create customSpec.json and customSpecRaw.json (Linux only)
 ./target/release/node-template build-spec --disable-default-bootnode --chain local > customSpec.json 
