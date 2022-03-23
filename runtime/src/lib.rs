@@ -270,8 +270,8 @@ impl pallet_sudo::Config for Runtime {
 impl planet_assets::Config for Runtime {
 	type Event = Event;
 	type Currency = Balances;
-	type MaxAssetsOwned = ConstU32<100>;
-	type MaxNumberOfAssets = ConstU32<100>;
+	type MaxAssetsOwned = ConstU32<999_999>;
+	type MaxNumberOfAssets = ConstU32<135_162_064>;
 }
 
 
